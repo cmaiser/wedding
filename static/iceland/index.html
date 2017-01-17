@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>C&C go to Iceland</title>
+        <meta name="description" content="Gamma Gallery - A Responsive Image Gallery Experiment"/>
+        <meta name="keywords" content="html5, responsive, image gallery, masonry, picture, images, sizes, fluid, history api, visibility api"/>
+        <meta name="author" content="Codrops"/>
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script src="js/modernizr.custom.70736.js"></script>
+		<noscript><link rel="stylesheet" type="text/css" href="css/noJS.css"/></noscript>
+		<!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+    </head>
+    <body>
+        <div class="container">
+			
+			<div class="main">
+				<header class="clearfix">
+				
+					<h1>Iceland<span>08.12.16 - 08.20.16</span></h1>
+
+					<div class="support-note">
+						<span class="note-ie">Sorry, only modern browsers.</span>
+					</div>
+					
+				</header>
+				
+				<div class="gamma-container gamma-loading" id="gamma-container">
+
+					<ul class="gamma-gallery" id="gallery-list">
+					
+					</ul>
+
+					<div class="gamma-overlay"></div>
+
+				</div>
+
+			</div><!--/main-->
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="js/jquery.masonry.min.js"></script>
+		<script src="js/jquery.history.js"></script>
+		<script src="js/js-url.min.js"></script>
+		<script src="js/jquerypp.custom.js"></script>
+		<script src="js/gamma.js"></script>
+		<script type="text/javascript">
+			
+			$(function() {
+
+				var titles = [
+					"Skógafoss, Skógar",
+					"Seljalandsfoss",
+					"Skógafoss, Skógar",
+					"Seljalandsfoss",
+					"Seljalandsfoss",
+					"Vik",
+					"Vik",
+					"Vik",
+					"She said yes!",
+					"Vik",
+					"Vik",
+					"",
+					"",
+					"Fjaðrárgljúfur",
+					"",
+					"Mýrdalsjökull Glacier",
+					"Mýrdalsjökull Glacier",
+					"Jökulsarlón",
+					"Jökulsarlón",
+					"East Fjords",
+					"East Fjords",
+					"",
+					"Dimmuborgir",
+					"Húsavík",
+					"Puffins! (Lundy Island)",
+					"Puffins! (Lundy Island)",
+					"Puffins! (Lundy Island)",
+					"Puffins! (Lundy Island)",
+					"Puffins! (Lundy Island)",
+					"Puffins! (Lundy Island)",
+					"Puffins! (Lundy Island)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Skjálfandaflói (Skjálfandi Bay)",
+					"Road to Húsavík",
+					"Hverfjall",
+					"Goðafoss",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"Blönduós",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"West Fjords",
+					"West Fjords",
+					"West Fjords",
+					"West Fjords",
+					"West Fjords",
+					"West Fjords",
+					"West Fjords",
+					"Snaefellsnes Peninsula",
+					"Kirkjufell",
+					"Snaefellsnes Peninsula",
+					"Reykjavík",
+					"Reykjavík",
+					"Reykjavík",
+					"Reykjavík",
+					"Icelandic Lamp Hot Dog",
+					"Fermented Shark and Brennivín",
+					"Hallgrímskirkja",
+					"Reykjavík",
+					"Reykjavík",
+					"Keflavik International Airport",
+					"",
+					"",
+					"",
+					"",
+					"",
+					""
+				];
+
+				var page = 0;
+				var items = [];
+				
+				
+				for(var i=0; i<titles.length; i++){
+					var imgNumber = i+1
+					var crazyString = 
+					"<li>" +
+					"<div data-description=\"<h3>" + titles[i] + "</h3>\" data-max-width=\"1800\" data-max-height=\"1350\">" + 
+					"<div data-src=\"img/" + imgNumber + ".jpg\"></div>" +
+					"<noscript>" +
+					"	<img src=\"img/" + imgNumber + ".jpg\"/>" +
+					"</noscript>" +
+					"</div>" +
+					"</li>";
+					
+					$("#gallery-list").append(crazyString);
+					console.log(crazyString);
+				}
+				
+				
+				
+				var GammaSettings = {
+						// order is important!
+						viewport : [ {
+							width : 1200,
+							columns : 5
+						}, {
+							width : 900,
+							columns : 4
+						}, {
+							width : 500,
+							columns : 3
+						}, { 
+							width : 320,
+							columns : 2
+						}, { 
+							width : 0,
+							columns : 2
+						} ]
+				};
+
+				Gamma.init( GammaSettings, fncallback );
+				
+				function fncallback() {
+
+					$( '#loadmore' ).show().on( 'click', function() {
+
+						++page;
+						var newitems = items[page-1]
+						if( page <= 1 ) {
+							
+							Gamma.add( $( newitems ) );
+
+						}
+						if( page === 1 ) {
+
+							$( this ).remove();
+
+						}
+
+					} );
+
+				}
+
+			});
+
+		</script>	
+	</body>
+</html>

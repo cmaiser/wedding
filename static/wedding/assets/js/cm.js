@@ -1,39 +1,41 @@
-function resolveLocation(lat, lon) {
-
+function saveHousehold(lat, lon) {
 	$.ajax({
 		type : "POST",
-		url : window.location.hostname + "/smtp/",
+		url  : "/wedding/household/",
+		datatype : "json",
+		data : JSON.stringify({
+		    name : "Maiser",
+		    uuid : "BLAHBLAHBLAH",
+		    addresses : [
+		        {
+		            firstName : "Chris",
+		            lastName : "Maiser",
+		            email : "blah@blah.org",
+		            invited : true,
+		            going : true,
+		            invitedRehersal : true,
+		            goingRehersal : true
+		        },
+		        {
+		            firstName : "Dufus",
+		            lastName : "Maiser",
+		            email : "blah@blah.org",
+		            invited : false,
+		            going : false,
+		            invitedRehersal : false,
+		            goingRehersal : false
+		        }
+		    ]
+		}),
+
 		success : function(data) {
 
 			// convert response string to object
 			var responseJSON = jQuery.parseJSON(data);
-
-			var city = responseJSON["city"];
-			var state = responseJSON["state"];
-			;
-			var country = responseJSON["country"];
-			;
-
-			// only global until I figure out jquery scope (c'mon, it's just
-			// javascript!)
-			locationString = city + ",&nbsp;" + state + ",&nbsp;" + country;
-
-			$("#location").find("span").fadeOut(
-					function() {
-						$(this).html(
-								"Your&nbsp;location:&nbsp;&nbsp;"
-										+ locationString).fadeIn(1000,
-								getExcuses(lat, lon, city, state));
-					});
 		},
 		error : function(xhr, textStatus, errorThrown) {
 
-			$("#location").find("span").fadeOut(
-					function() {
-						$(this).html(
-								"Could&nbsp;not&nbsp;resolve&nbsp;location:&nbsp;"
-										+ textStatus).fadeIn(1000);
-					});
+			var bob;
 
 		}
 	});

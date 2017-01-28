@@ -1,9 +1,8 @@
 from flask import Flask, render_template, request, jsonify, Response
 from flask.ext.sqlalchemy import SQLAlchemy
-from service import weddingService
 import config
 import logging
-import json
+import uuid
 from logging.handlers import RotatingFileHandler
 
 app = Flask(__name__)
@@ -49,6 +48,10 @@ def iceland():
 def wedding():
     return render_template("wedding.html")
 
+@app.route("/admin/")
+def admin():
+    return render_template("weddingAdmin.html")
+
 @app.route("/wedding/household/",  methods=["GET", "POST"])
 def weddingHousehold():
     if request.method == "GET":
@@ -78,17 +81,42 @@ def saveHouseholds(jsonObj):
     persons = []
 
     for n in jsonObj['addresses']:
-        person = Person(firstName=n['firstName'], lastName=n['lastName'], email=n['email'], invited=n['invited'], going=n['going'], invitedRehersal=n['invitedRehersal'], goingRehersal=n['goingRehersal'])
+
+        if n['id'] is not None:
+            personFromDB = Person.query.filter_by(id=n['id']).first()
+            db.session.delete(personFromDB)
+
+            try:
+                db.session.commit()
+            except Exception as e:
+                return str(e)
+
+        person = Person(id=None, firstName=n['firstName'], lastName=n['lastName'], email=n['email'], invited=n['invited'], going=n['going'], invitedRehersal=n['invitedRehersal'], goingRehersal=n['goingRehersal'])
         persons.append(person)
 
-    household = Household(name=jsonObj['name'], uuid=jsonObj['uuid'], addresses=persons)
 
-    db.session.add(household)
 
-    try:
-        db.session.commit()
-    except Exception as e:
-        return str(e)
+    if jsonObj['id'] is None:
+
+        u = uuid.uuid1()
+        uuidStr = u.hex
+
+        household = Household(id= jsonObj['id'], name=jsonObj['name'], uuid=uuidStr, addresses=persons)
+        db.session.add(household)
+
+        try:
+            db.session.commit()
+        except Exception as e:
+            return str(e)
+    else:
+        household = Household.query.filter_by(id=jsonObj['id']).first()
+        household.name = jsonObj['name']
+        household.addresses = persons
+
+        try:
+            db.session.commit()
+        except Exception as e:
+            return str(e)
 
     #re-query to return results
     dbObject = Household.query.filter_by(id=household.id).first()
@@ -114,6 +142,7 @@ def processHouseholdForReturn(dbObject):
         person['going']           = n.going
         person['invitedRehersal'] = n.invitedRehersal
         person['goingRehersal']   = n.goingRehersal
+        person['household_id']    = n.household_id
 
         household['addresses'].append(person)
 

@@ -10,6 +10,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="/static/wedding/assets/img/ico/favicon.png">
+    <!--
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/wedding/assets/img/ico/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/wedding/assets/img/ico/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/wedding/assets/img/ico/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" href="/static/wedding/assets/img/ico/apple-touch-icon-57x57.png">
+     -->
 
     <title>Chris & Candice</title>
 
@@ -24,8 +30,6 @@
     <!-- Custom Fonts -->
     <link href="/static/wedding/assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/static/wedding/assets/css/pe-icons.css" rel="stylesheet">
-
-    <script src="/static/wedding/assets/js/cm.js"></script>
 
 </head>
 
@@ -55,9 +59,12 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="main-navigation">
                     <ul class="nav navbar-nav text-center">
-                        <li><a href="#welcome" class="page-scroll smoothie">Welcome</a></li>
+
                         <li><a href="#wedding-date" class="page-scroll smoothie">Date</a></li>
-                        <li><a class="navbar-brand smoothie" href="index.html">Chris & Candice</a></li>
+                        <li><a href="#location" class="page-scroll smoothie">Location</a></li>
+                        <li><a href="#accommodation" class="page-scroll smoothie">Accommodation</a></li>
+                        <li><a class="navbar-brand smoothie" href="/wedding/">Chris & Candice</a></li>
+                        <li><a href="#comments" class="page-scroll smoothie">Well Wishes</a></li>
                         <li><a href="#gifts" class="page-scroll smoothie">Registry</a></li>
                         <li><a href="#rsvp" class="page-scroll smoothie">RSVP</a></li>
                     </ul>
@@ -88,7 +95,7 @@
         </header>
 
         <section id="welcome">
-            <div class="section-inner">
+            <!--<div class="section-inner">-->
 
                 <div class="container">
                     <div class="row">
@@ -114,23 +121,11 @@
                     </div>
                 </div>
 
-            </div>
+            <!--</div>-->
         </section>
+        <!--
 
-     	<section class="light-wrapper light-opaqued parallax" data-parallax="scroll" data-image-src="/static/wedding/assets/img/bg/bg8.jpg" data-speed="0.7">
-            <div class="section-inner">
-                <div class="wow fadeIn">
-    				<div class="container text-center the-date">
-    					<div class="row">
-    						<div class="col-xs-12">
-   				                 <p class="lead a-quote secondary-font">Falling in love was the easy part; planning a wedding - yikes!</p>
-    				        </div>
-    					</div>
-    				</div>
-    			</div>
-            </div>
-        </section>
-
+        -->
      	<section id="wedding-date"class="light-wrapper">
             <div class="section-inner">
                 <div class="wow fadeIn">
@@ -138,21 +133,6 @@
     					<div class="row">
     						<div class="col-xs-12" role="tabpanel">
                                 <div class="row">
-        				            <div class="col-xs-4 col-sm-12">
-        				                <!-- Nav tabs -->
-        				                <ul class="nav nav-justified icon-tabs" id="nav-tabs" role="tablist">
-        				                    <li role="presentation" class="active">
-        				                        <a href="#when" aria-controls="daksh" role="tab" data-toggle="tab">
-                                                   <span class="tabtitle heading-font">The Date</span>
-        				                        </a>
-        				                    </li>
-                                            <li role="presentation">
-                                                <a href="#where" aria-controls="dustin" role="tab" data-toggle="tab">
-                                                    <span class="tabtitle heading-font">The Location</span>
-                                                </a>
-                                            </li>
-        				                </ul>
-        				            </div>
         				            <div class="col-xs-8 col-sm-12 mt60">
         				                <!-- Tab panes -->
         				                <div class="tab-content" id="tabs-collapse">
@@ -160,34 +140,39 @@
         				                        <div class="tab-inner">
         				                            <p class="lead secondary-font">19th August 2017</p>
         				                        </div>
+        				                        <div class="tab-inner">
+        				                            <p class="h2 secondary-font">3:30 PM</p>
+        				                        </div>
         				                    </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="where">
-                                                <div class="tab-inner">
-                                                    <div class="row">
-                                                        <div class="col-sm-5 col-sm-offset-1 text-left">
-                                                            <p class="lead">B Lazy 2 Ranch</p>
-                                                            <p>454 County Rd 5</p>
-                                                            <p>Fraser, CO 80442</p>
-                                                            <p>(970) 726-5555</p>
-                                                        </div>
-                                                        <div class="col-sm-5">
-                                                            <div id="mapwrapper">
-                                                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12233.39750077854!2d-105.8283461!3d39.9559408!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd91ee5e214e1bc17!2sB+Lazy+2+Ranch+and+Event+Center!5e0!3m2!1sen!2sus!4v1472773628697" width="463" height="220" frameborder="0" style="border:0" allowfullscreen></iframe>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
         				                </div>
         				            </div>
                                 </div>
+                                <!--
+                                <div class="row">
+        				            <div class="col-xs-8 col-sm-12 mt20">
+        				                <p class="h3 secondary-font light-wrapper light-opaqued parallax" id="daysUntil"></p>
+        				            </div>
+        				        </div
+        				        -->
     				        </div>
     					</div>
     				</div>
     			</div>
             </div>
         </section>
-
+        <section class="light-wrapper light-opaqued parallax" data-parallax="scroll" data-image-src="/static/wedding/assets/img/bg/bg2.jpg" data-speed="0.7">
+            <div class="section-inner">
+                <div class="wow fadeIn">
+    				<div class="container text-center the-date">
+    					<div class="row">
+    						<div class="col-xs-12">
+   				                 <p class="lead a-quote secondary-font" id="daysUntil"></p>
+    				        </div>
+    					</div>
+    				</div>
+    			</div>
+            </div>
+        </section>
         <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="/static/wedding/assets/img/bg/bg5.jpg" data-speed="0.7">
             <div class="section-inner">
                 <div class="container">
@@ -250,6 +235,7 @@
                         <div class="col-lg-12 text-center mb100 wow fadeIn">
                             <h2 class="section-heading">Gift Registration</h2>
                             <hr class="thin-hr">
+                            <h3 class="section-subheading secondary-font">Our ideal suggestions.</h3>
                         </div>
                     </div>
                 </div>
@@ -312,12 +298,9 @@
                             <input class="btn btn-primary mt30" type="submit" name="submit" value="Submit" />
                         </form>
                     </div>
-                    <div>
-
-                    </div>
 
                     <div class="col-md-12 text-center wow fadeIn">
-                        <button onclick="saveHousehold()">Send Data</button><span class="copyright">Copyright 2015. Designed by DISTINCTIVE THEMES</span>
+                        <span class="copyright">Copyright 2015. Designed by DISTINCTIVE THEMES</span>
                     </div>
                 </div>
             </div>
@@ -330,6 +313,7 @@
     <script src="/static/wedding/assets/js/plugins.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="/static/wedding/assets/js/init.js"></script>
+    <script src="/static/wedding/assets/js/cm.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

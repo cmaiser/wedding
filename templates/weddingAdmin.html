@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="shortcut icon" href="/static/wedding/assets/img/ico/favicon.png">
+        <script src="/static/wedding/assets/js/jquery.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/static/wedding/assets/js/admin.js"></script>
+
+        <title>Wedding Admin</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse">
+          <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Wedding Administration Console</a>
+                <div style="padding-top:10px; padding-bottom:10px;">
+                    <input type="button" onClick="addHousehold()" value="+ Add" class="btn btn-primary">
+                </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="container" id="maincontainer">
+            <div class="row">
+                <div class="col-md-1"><strong>Id</strong></div>
+                <div class="col-md-2"><strong>Name</strong></div>
+                <div class="col-md-3"><strong>UUID</strong></div>
+                <div class="col-md-4">
+                    <div id="message" class="alert alert-success"  style="display: none; top: 0px; left: 0px">
+                     </div>
+                    <div id="message" class="alert alert-danger"  style="display: none; top: 0px; left: 0px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="modaltitle">Modal Header</h4>
+            </div>
+            <div class="modal-body" id="modalcontainer">
+
+                <div class="row">
+                    <div class="col-md-1"><strong>Id</strong></div>
+                    <div class="col-md-2"><strong>First</strong></div>
+                    <div class="col-md-2"><strong>Last</strong></div>
+                    <div class="col-md-2"><strong>Email</strong></div>
+                    <div class="col-md-1"><strong>Rehersal</strong></div>
+                    <div class="col-md-1"><strong>Invite</strong></div>
+                    <div class="col-md-1"><strong>Wedding</strong></div>
+                    <div class="col-md-1"><strong>Invite</strong></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onClick="addPerson()">+ Add</button>
+                <button type="button" class="btn btn-success" onClick="saveHousehold(null)">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+
+    </body>
+</html>

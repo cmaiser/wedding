@@ -26,6 +26,7 @@
 
     <!-- Custom CSS -->
     <link href="/static/wedding/assets/css/style.css" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="/static/wedding/assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -60,11 +61,11 @@
                 <div class="collapse navbar-collapse" id="main-navigation">
                     <ul class="nav navbar-nav text-center">
 
-                        <li><a href="#wedding-date" class="page-scroll smoothie">Date</a></li>
-                        <li><a href="#location" class="page-scroll smoothie">Location</a></li>
-                        <li><a href="#accommodation" class="page-scroll smoothie">Accommodation</a></li>
+                        <li><a href="#wedding-date" class="page-scroll smoothie">When</a></li>
+                        <li><a href="#location" class="page-scroll smoothie">Where</a></li>
+                        <li><a href="#accommodation" class="page-scroll smoothie">Stay</a></li>
                         <li><a class="navbar-brand smoothie" href="/wedding/">Chris & Candice</a></li>
-                        <li><a href="#comments" class="page-scroll smoothie">Well Wishes</a></li>
+                        <li><a href="#wellWishes" class="page-scroll smoothie">Well Wishes</a></li>
                         <li><a href="#gifts" class="page-scroll smoothie">Registry</a></li>
                         <li><a href="#rsvp" class="page-scroll smoothie">RSVP</a></li>
                     </ul>
@@ -73,14 +74,6 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
-
-        <div id="search-wrapper">
-            <button type="button" class="close">×</button>
-            <form>
-                <input type="search" value="" placeholder="Enter Search Term" />
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-        </div>
 
         <!-- Header -->
         <header id="headerwrap" class="backstretched fullheight">
@@ -101,7 +94,7 @@
                     <div class="row">
                         <div class="col-lg-12 text-center mb100 wow fadeIn">
                             <h2 class="section-heading">Chris and Candice</h2>
-                            <hr class="thin-hr">
+                            <img src="/static/wedding/assets/img/ico/linebreak.PNG" />
                             <h3 class="section-subheading secondary-font">Join us on our special day.</h3>
                         </div>
                     </div>
@@ -110,7 +103,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-5 col-md-offset-1 wow fadeIn">
-                        	<img src="/static/wedding/assets/img/him.jpg" class="img-responsive mb30">
+                        	<img src="/static/wedding/assets/img/him.jpg" class="img-responsive mb30 ">
                             <p class="text-center">Chris</p>
                         </div>
 
@@ -138,30 +131,24 @@
         				                <div class="tab-content" id="tabs-collapse">
         				                    <div role="tabpanel" class="tab-pane fade in active" id="when">
         				                        <div class="tab-inner">
-        				                            <p class="lead secondary-font">19th August 2017</p>
+        				                            <p class="lead secondary-font">19&nbsp;August&nbsp;2017</p>
         				                        </div>
         				                        <div class="tab-inner">
-        				                            <p class="h2 secondary-font">3:30 PM</p>
+        				                            <p class="h2 secondary-font">Ceremony&nbsp;at&nbsp;3:30&nbsp;PM</p>
+        				                            <p class="h2 secondary-font">reception&nbsp;to&nbsp;follow</p>
         				                        </div>
         				                    </div>
         				                </div>
         				            </div>
                                 </div>
-                                <!--
-                                <div class="row">
-        				            <div class="col-xs-8 col-sm-12 mt20">
-        				                <p class="h3 secondary-font light-wrapper light-opaqued parallax" id="daysUntil"></p>
-        				            </div>
-        				        </div
-        				        -->
     				        </div>
     					</div>
     				</div>
     			</div>
             </div>
         </section>
-        <section class="light-wrapper light-opaqued parallax" data-parallax="scroll" data-image-src="/static/wedding/assets/img/bg/bg2.jpg" data-speed="0.7">
-            <div class="section-inner">
+        <section>
+            <div class="section-inner"   style="background:#ffffff url('/static/wedding/assets/img/bg/48.jpg') no-repeat center;">
                 <div class="wow fadeIn">
     				<div class="container text-center the-date">
     					<div class="row">
@@ -173,12 +160,13 @@
     			</div>
             </div>
         </section>
-        <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="/static/wedding/assets/img/bg/bg5.jpg" data-speed="0.7">
+        <section id="wellWishes">
             <div class="section-inner">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 text-center mb100 wow fadeIn">
                             <h2 class="section-heading">Well Wishes</h2>
+                            <img src="/static/wedding/assets/img/ico/linebreak.PNG" />
                         </div>
                     </div>
                 </div>
@@ -190,15 +178,12 @@
                                     <div class="row">
                                         <div class="col-xs-10 col-xs-offset-1 item-caption">
                                             <div class="row">
-                                                <div class="col-xs-3">
-                                                    <div>
-                                                        <img src="/static/wedding/assets/img/team/small2.jpg" class="img-responsive testimonial-author" alt="">
-                                                    </div>
+                                                <div class="col-xs-2"></div>
+                                                <div class="col-xs-6">
+                                                    <p class="lead">Lol, y'all are the best</p>
+                                                    <p class="lead secondary-font">Barack Obama</p>
                                                 </div>
-                                                <div class="col-xs-9">
-                                                    <p class="lead">Monotonectally exploit holistic markets after pandemic niches. Collaboratively expedite long-term high-impact results whereas equity invested growth strategies. Intrinsicly underwhelm 24/365 strategic theme areas with proactive synergy. </p>
-                                                    <p class="lead secondary-font">Charles Davies</p>
-                                                </div>
+                                                <div class="col-xs-2"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -207,15 +192,26 @@
                                     <div class="row">
                                         <div class="col-xs-10 col-xs-offset-1 item-caption">
                                             <div class="row">
-                                                <div class="col-xs-3">
-                                                    <div>
-                                                        <img src="/static/wedding/assets/img/team/small1.jpg" class="img-responsive testimonial-author" alt="">
-                                                    </div>
+                                                <div class="col-xs-2"></div>
+                                                <div class="col-xs-6">
+                                                    <p class="lead">I like pizza.</p>
+                                                    <p class="lead secondary-font">Michelle Obama</p>
                                                 </div>
-                                                <div class="col-xs-9">
-                                                    <p class="lead">Monotonectally exploit holistic markets after pandemic niches. Collaboratively expedite long-term high-impact results whereas equity invested growth strategies. Intrinsicly underwhelm 24/365 strategic theme areas with proactive synergy. </p>
-                                                    <p class="lead secondary-font">Charles Davies</p>
+                                                <div class="col-xs-2"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <div class="col-xs-10 col-xs-offset-1 item-caption">
+                                            <div class="row">
+                                                <div class="col-xs-2"></div>
+                                                <div class="col-xs-6">
+                                                    <p class="lead">They say my wedding was the best wedding.  I was on the cover of wedding magazine more times than anyone else.  The main stream media is lying about the size of my wedding.  Sad!</p>
+                                                    <p class="lead secondary-font">Tiny Hands McTrump</p>
                                                 </div>
+                                                <div class="col-xs-2"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -229,78 +225,62 @@
 
         <section id="gifts">
             <div class="section-inner">
-
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-12 text-center mb100 wow fadeIn">
+                        <div class="col-md-12 text-center">
                             <h2 class="section-heading">Gift Registration</h2>
-                            <hr class="thin-hr">
-                            <h3 class="section-subheading secondary-font">Our ideal suggestions.</h3>
+                            <img src="/static/wedding/assets/img/ico/linebreak.PNG" />
                         </div>
                     </div>
-                </div>
-
-                <div class="container">
                     <div class="row">
-                        <div class="col-xs-12">
-                            <ul class="owl-carousel-paged testimonial-owl wow fadeIn list-unstyled" data-items="3" data-items-desktop="[1200,3]" data-items-desktop-small="[980,3]" data-items-tablet="[768,3]" data-items-mobile="[479,2]">
-                                <li>
-                                    <img src="/static/wedding/assets/img/logo/logo1.png" class="img-responsive" alt="">
-                                </li>
-                                <li>
-                                    <img src="/static/wedding/assets/img/logo/logo2.png" class="img-responsive" alt="">
-                                </li>
-                                <li>
-                                    <img src="/static/wedding/assets/img/logo/logo3.png" class="img-responsive" alt="">
-                                </li>
-                                <li>
-                                    <img src="/static/wedding/assets/img/logo/logo4.png" class="img-responsive" alt="">
-                                </li>
-                                <li>
-                                    <img src="/static/wedding/assets/img/logo/logo5.png" class="img-responsive" alt="">
-                                </li>
-                                <li>
-                                    <img src="/static/wedding/assets/img/logo/logo6.png" class="img-responsive" alt="">
-                                </li>
-                            </ul>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3 wow fadeIn text-center">
+                            <a href="https://www.amazon.com/wedding/share/chrisandcandice" target="_blank">
+                                <img src="/static/wedding/assets/img/registry/1.1registry.png" />
+                            </a>
                         </div>
+                        <div class="col-md-3 wow fadeIn text-center">
+                            <a href="https://www.anthropologie.com/registry/listing?registryId=NJVHM2U0MDI0" target="_blank">
+                                <img src="/static/wedding/assets/img/registry/2registry.jpg" />
+                            </a>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3 wow fadeIn text-center">
+                            <a href="http://www.crateandbarrel.com/gift-registry/candice-walkinshaw-and-christopher-maiser/r5627622" target="_blank">
+                                <img src="/static/wedding/assets/img/registry/3registry.gif" />
+                            </a>
+                        </div>
+                        <div class="col-md-3 wow fadeIn text-center">
+                            <a href="https://www.honeyfund.com/wedding/Rhymeswithlaser" target="_blank">
+                                <img src="/static/wedding/assets/img/registry/4registry.png" />
+                            </a>
+                        </div>
+                        <div class="col-md-3"></div>
                     </div>
                 </div>
-
             </div>
         </section>
-
-        <section class="instafeed-wrapper dark-wrapper">
-        	<div id="instafeed"></div>
-        	<div class="instafeed-overlay">
-	        	<div class="vertical-center">
-	        		<p class="lead secondary-font">Share the memories</p>
-	        	</div>
-        	</div>
-        </section>
-
         <footer id="rsvp" class="white-wrapper">
-            <div class="container">
-                <div class="row">
+            <div class="container" id="rsvpPersonContainer">
+
+                <div id="unknownRsvp" class="row">
                     <div class="col-md-12 text-center">
                         <h4 class="footer-goodbye">We look forward to seeing you!</h4>
+                        <img src="/static/wedding/assets/img/ico/linebreak.PNG" />
                     </div>
 
-                    <hr class="col-sm-12 thin-hr" />
-
-                    <div class="col-sm-10 col-sm-offset-1 section-inner">
-
-                    <div id="message"></div>
-                        <form method="post" action="sendemail.php" id="contactform" class="main-contact-form wow fadeIn" data-wow-delay="0.2s">
-                            <input type="text" class="form-control col-md-6" name="name" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name." />
-                            <input type="text" class="form-control col-md-6" name="email" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address." />
-                            <textarea name="comments" class="form-control" id="comments" placeholder="Your Message *" required data-validation-required-message="Please enter a message."></textarea>
-                            <input class="btn btn-primary mt30" type="submit" name="submit" value="Submit" />
-                        </form>
+                    <div class="col-md-12 text-center">
+                        <p class="lead">Please click on your custom link provided in your email invitation to RSVP.</p>
                     </div>
+                </div>
 
-                    <div class="col-md-12 text-center wow fadeIn">
-                        <span class="copyright">Copyright 2015. Designed by DISTINCTIVE THEMES</span>
+                <div id="knownRsvp" class="row hidden">
+                    <div class="col-md-12 text-center">
+                        <h2 class="section-heading">RSVP</h2>
+                        <img src="/static/wedding/assets/img/ico/linebreak.PNG" />
                     </div>
                 </div>
             </div>
@@ -313,6 +293,8 @@
     <script src="/static/wedding/assets/js/plugins.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="/static/wedding/assets/js/init.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <!-- http://www.bootstraptoggle.com/ -->
     <script src="/static/wedding/assets/js/cm.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

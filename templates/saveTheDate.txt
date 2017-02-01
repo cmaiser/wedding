@@ -1,0 +1,11 @@
+Dear {{ householdName }},
+
+Chris and Candice are getting married!
+
+Save the date:
+August 19, 2017
+Fraser, CO
+
+Please go to the following location to verify this email works.
+
+http://nnagflar.pythonanywhere.com/wedding/?household={{ uuid }}

@@ -100,3 +100,16 @@ GRIDS
 .gridlast { margin-right: 0; }
 .grid5 { width: 300px; }
 .grid15 { width: 940px; }
+
+.show {
+  display: block !important;
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.invisible {
+  visibility: hidden;
+}

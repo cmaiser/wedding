@@ -6,6 +6,6 @@ Save the date:
 August 19, 2017
 Fraser, CO
 
-Please go to the following location to verify this email works.
+Please follow the url below to confirm your email address, find out more information about the wedding, or even send us a message.
 
-http://nnagflar.pythonanywhere.com/wedding/?household={{ uuid }}
+http://nnagflar.pythonanywhere.com/wedding//wedding/verifyEmail/{{ uuid }}

@@ -1,6 +1,10 @@
 var currentHousehold = {};
 
 function saveHousehold() {
+
+    currentHousehold.sddSent = null;
+    currentHousehold.inviteSent = null;
+
 	$.ajax({
 		type : "POST",
 		url  : "/wedding/household/",
@@ -8,6 +12,7 @@ function saveHousehold() {
 		data : JSON.stringify(currentHousehold),
 
 		success : function(data) {
+
 		    currentHousehold = data;
 		    $('#rsvpPersonContainer').empty();
 
@@ -19,6 +24,10 @@ function saveHousehold() {
 		    html += '</div>';
 
             $('#rsvpPersonContainer').append(html);
+
+            $('#myModal').modal('hide');
+
+            toggleMessageControl();
 
 		},
 		error : function(xhr, textStatus, errorThrown) {
@@ -71,16 +80,16 @@ function detectUser() {
 }
 
 function getHousehold(uuid) {
-    $.get( "/wedding/household/" + uuid, function( data ) {
+    $.get( "/wedding/household/" + uuid, function(data) {
         currentHousehold = data;
 
-        if(typeof data.addresses != "undefined") {
+        if(typeof data.persons != "undefined") {
 
             $('#knownRsvp').removeClass('hidden');
             $('#unknownRsvp').addClass('hidden');
             $('#welcomeHousehold').html('Welcome ' + data.name + '!');
 
-            $.each(currentHousehold.addresses, function (i, item) {
+            $.each(currentHousehold.persons, function (i, item) {
                 if(item.going == null) {
                     item.going = false;
                 }
@@ -88,13 +97,24 @@ function getHousehold(uuid) {
 
             renderRsvp(currentHousehold);
         }
+
+        toggleMessageControl();
     });
+}
+
+function toggleMessageControl() {
+    if(typeof currentHousehold.comments != "undefined" && currentHousehold.comments.length == 0) {
+        $('#wellWishesControl').html('<a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"  style="color:green" aria-hidden="true"></i>&nbsp;Add a Message</a>')
+    }
+    else if(typeof currentHousehold.comments != "undefined" && currentHousehold.comments.length > 0) {
+        $('#wellWishesControl').html('<i class="fa fa-check" style="color:green"></i>&nbsp;Thank you for leaving us a message!')
+    }
 }
 
 function toggleButton(number) {
     var button = $('#rsvp' + number);
     var diet = $('#diet' + number);
-    var person = currentHousehold.addresses[number];
+    var person = currentHousehold.persons[number];
 
     if(person.going) {
         person.going = false;
@@ -114,7 +134,16 @@ function toggleButton(number) {
 
 
 function updateDiet(event, i) {
-    currentHousehold.addresses[i].diet = event.currentTarget.value;
+    currentHousehold.persons[i].diet = event.currentTarget.value;
+}
+
+function updateComment(event, i) {
+    if(currentHousehold.comments.length == 0) {
+        currentHousehold.comments[0] = {};
+    }
+    currentHousehold.comments[0].id = null;
+    currentHousehold.comments[0].commentText = event.currentTarget.value;
+    currentHousehold.comments[0].commentFrom = currentHousehold.name;
 }
 
 function renderRsvp(household) {
@@ -123,7 +152,7 @@ function renderRsvp(household) {
     if(household.inviteSent != null) {
         var html = "";
 
-        $.each(persons, function (i, item) {
+        $.each(household.persons, function (i, item) {
             var firstCol = (i%2 == 0);
             if(firstCol) {
                 html += '<div class="row">';
@@ -140,7 +169,7 @@ function renderRsvp(household) {
             }
         });
 
-        if(persons.length%2 == 1) {
+        if(household.persons.length%2 == 1) {
             html += '<div class="col-md-4"></div>';
             html += '<div class="col-md-2"></div>';
             html += '</div>';
@@ -157,7 +186,7 @@ function renderRsvp(household) {
         $('#rsvpPersonContainer').append(html);
 
         //toggle button for each rendered rsvp
-        $.each(persons, function (i, item) {
+        $.each(household.persons, function (i, item) {
             if(item.going) {
                 item.going = false;
                 toggleButton(i);
@@ -178,7 +207,6 @@ function renderRsvp(household) {
 
         $('#rsvpPersonContainer').append(html);
     }
-
-
 }
+
 

@@ -119,10 +119,10 @@
         <!--
 
         -->
-     	<section id="wedding-date"class="light-wrapper">
+     	<section id="wedding-date"class="light-wrapper mb100" style="background:#ffffff url('/static/wedding/assets/img/bg/48.jpg') no-repeat center; color:#ffffff">
             <div class="section-inner">
                 <div class="wow fadeIn">
-    				<div class="container text-center">
+    				<div class="container text-center mt120">
     					<div class="row">
     						<div class="col-xs-12" role="tabpanel">
                                 <div class="row">
@@ -134,8 +134,9 @@
         				                            <p class="lead secondary-font">19&nbsp;August&nbsp;2017</p>
         				                        </div>
         				                        <div class="tab-inner">
-        				                            <p class="h2 secondary-font">Ceremony&nbsp;at&nbsp;3:30&nbsp;PM</p>
-        				                            <p class="h2 secondary-font">reception&nbsp;to&nbsp;follow</p>
+        				                            <p class="h1 secondary-font">Ceremony&nbsp;at&nbsp;3:30&nbsp;PM</p>
+        				                            <p class="h1 secondary-font">reception&nbsp;to&nbsp;follow</p>
+        				                            <p class="h1 secondary-font" id="daysUntil"></p>
         				                        </div>
         				                    </div>
         				                </div>
@@ -147,75 +148,40 @@
     			</div>
             </div>
         </section>
-        <section>
-            <div class="section-inner"   style="background:#ffffff url('/static/wedding/assets/img/bg/48.jpg') no-repeat center;">
-                <div class="wow fadeIn">
-    				<div class="container text-center the-date">
-    					<div class="row">
-    						<div class="col-xs-12">
-   				                 <p class="lead a-quote secondary-font" id="daysUntil"></p>
-    				        </div>
-    					</div>
-    				</div>
-    			</div>
-            </div>
-        </section>
-        <section id="wellWishes">
+        <section id="wellWishes" class="dark-wrapper opaqued" data-parallax="scroll" data-speed="0.7">
             <div class="section-inner">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 text-center mb100 wow fadeIn">
                             <h2 class="section-heading">Well Wishes</h2>
-                            <img src="/static/wedding/assets/img/ico/linebreak.PNG" />
+                            <img src="/static/wedding/assets/img/ico/linebreaknegative.png" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center mb100 wow fadeIn">
+                            <h2 id="wellWishesControl" class="lead">Please click the link in your custom Save the Date email to add a message</h2>
                         </div>
                     </div>
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
-                            <ul class="owl-carousel-paged testimonial-owl wow fadeIn list-unstyled" data-items="1" data-items-desktop="[1200,1]" data-items-desktop-small="[980,1]" data-items-tablet="[768,1]" data-items-mobile="[479,1]">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-xs-10 col-xs-offset-1 item-caption">
-                                            <div class="row">
-                                                <div class="col-xs-2"></div>
-                                                <div class="col-xs-6">
-                                                    <p class="lead">Lol, y'all are the best</p>
-                                                    <p class="lead secondary-font">Barack Obama</p>
+
+                            <ul id="owl" class="owl-carousel-paged testimonial-owl wow fadeIn list-unstyled" data-items="1" data-items-desktop="[1200,1]" data-items-desktop-small="[980,1]" data-items-tablet="[768,1]" data-items-mobile="[479,1]">
+                                {% for comment in comments %}
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-10 col-xs-offset-1 item-caption">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <p class="lead">{{ comment.commentText }}</p></p>
+                                                        <p class="lead secondary-font">{{ comment.commentFrom }}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="col-xs-2"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="row">
-                                        <div class="col-xs-10 col-xs-offset-1 item-caption">
-                                            <div class="row">
-                                                <div class="col-xs-2"></div>
-                                                <div class="col-xs-6">
-                                                    <p class="lead">I like pizza.</p>
-                                                    <p class="lead secondary-font">Michelle Obama</p>
-                                                </div>
-                                                <div class="col-xs-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="row">
-                                        <div class="col-xs-10 col-xs-offset-1 item-caption">
-                                            <div class="row">
-                                                <div class="col-xs-2"></div>
-                                                <div class="col-xs-6">
-                                                    <p class="lead">They say my wedding was the best wedding.  I was on the cover of wedding magazine more times than anyone else.  The main stream media is lying about the size of my wedding.  Sad!</p>
-                                                    <p class="lead secondary-font">Tiny Hands McTrump</p>
-                                                </div>
-                                                <div class="col-xs-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -286,6 +252,38 @@
             </div>
         </footer>
 
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="modaltitle">Modal Header</h4>
+                </div>
+                <div class="modal-body" id="modalcontainer">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                             <textarea id="messageBox" maxlength="500" style="width: 98%;padding:1%;" onkeyup="updateComment(event, ' + i + ')" ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-success" onClick="saveHousehold(null)">Save</button>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="/static/wedding/assets/js/jquery.js"></script>

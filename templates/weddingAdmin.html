@@ -21,7 +21,10 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Wedding Administration Console</a>
                 <div style="padding-top:10px; padding-bottom:10px;">
-                    <input type="button" onClick="addHousehold()" value="+ Add" class="btn btn-primary">
+                    <a href="#" onclick="addHousehold()"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                    <a href="#" data-toggle="modal" data-target="#activityModal" ><i class="fa fa-th-list fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                    <a href="#" onclick="refreshHouseholds()"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                    <a href="#" onclick="exportCSV()"><i class="fa fa-cloud-download fa-2x" aria-hidden="true"></i></a>
                 </div>
             </div>
           </div>
@@ -62,8 +65,30 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <a href="#" onClick="addPerson()"><i class="fa fa-plus" aria-hidden="true"></i></a>
                 <button type="button" class="btn btn-primary" onClick="addPerson()">+ Add</button>
                 <button type="button" class="btn btn-success" onClick="saveHousehold(null)">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div id="activityModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="activitymodaltitle">Activity</h4>
+            </div>
+            <div class="modal-body" id="activitymodalcontainer">
+
+            </div>
+            <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>

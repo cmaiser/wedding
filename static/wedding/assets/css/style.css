@@ -662,11 +662,11 @@ section {
 }
 
 .dark-wrapper {
-    background-color: #111111
+    background-color: #000000
 }
 
 .dark-wrapper.opaqued, .dark-opaqued {
-    background-color: rgba(0,0,0, 0.6);
+    background-color: #000000
 }
 
 
@@ -692,7 +692,7 @@ section {
 }
 
 .section-inner {
-    padding: 120px 0
+    padding: 60px 0
 }
 
 section h2.section-heading, .section-heading {

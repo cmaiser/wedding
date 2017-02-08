@@ -181,8 +181,12 @@ $(document).ready(function(){
     $('.entry-content dl, #post-content dl').addClass('dl-horizontal');
     //$(window).trigger('resize');
 
-    startTimer();
+     $('#myModal').on('show.bs.modal', function(e) {
+        var $modal = $(this);
+        $("#modaltitle").html(currentHousehold.name);
+    });
 
+    startTimer();
     detectUser();
 });
 

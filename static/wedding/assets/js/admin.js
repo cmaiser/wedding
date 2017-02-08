@@ -19,11 +19,74 @@ $(document).ready(function(){
         $("#modaltitle").html(currentHousehold.name + " Household");
         $("#modalcontainer").empty();
         renderPersonHeader();
-        $.each(currentHousehold.addresses, function (i, item) {
+        $.each(currentHousehold.persons, function (i, item) {
             renderPerson(i, item);
         });
     });
+
+    $('#activityModal').on('show.bs.modal', function(e) {
+
+        var $modal = $(this);
+
+        $("#activitymodalcontainer").empty();
+
+        $.get( "/wedding/activity/", function( data ) {
+
+            $.each(data.results, function (i, item) {
+                if(item.severity != 'DEBUG') {
+                    renderActivity(i, item);
+                }
+            });
+        });
+    });
 });
+
+refreshHouseholds = function() {
+    $.get( "/wedding/household/", function( data ) {
+
+        ajaxData = data;
+        $("#maincontainer").empty();
+        renderHouseholdHeader();
+
+        $.each(data.results, function (i, item) {
+            renderHousehold(i, item);
+        });
+    });
+};
+
+exportCSV = function() {
+    var dataToExport = [];
+    var header = ["Household Name", "UUID", "Email", "Email Confirmed","StD Sent", "Invite Sent", "First Name", "Last Name", "Going", "Diet Restrictions"];
+    dataToExport.push(header);
+    $.each(ajaxData.results, function (i, item) {
+        if(item.persons.length > 0) {
+            $.each(item.persons, function (j, person) {
+                var row = [item.name, item.uuid, item.email, item.emailVerified, item.sddSent, item.inviteSent, person.firstName, person.lastName, person.going, person.diet];
+                dataToExport.push(row);
+            });
+        }
+        else {
+            var row = [item.name, item.uuid, item.email, item.emailVerified, item.sddSent, item.inviteSent, "", "", "", ""];
+            dataToExport.push(row);
+        }
+
+    });
+
+    var csvContent = 'data:text/csv;charset=utf-8,';
+    dataToExport.forEach(function(infoArray, index){
+        dataString = infoArray.join(',');
+        csvContent += index < dataToExport.length ? dataString+ '\n' : dataString;
+    });
+
+    var encodedUri = encodeURI(csvContent);
+    var link = document.createElement("a");
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', "wedding " + formatDate(new Date()) + '.csv');
+    document.body.appendChild(link); // Required for FF
+
+    link.click();
+
+};
 
 saveHousehold = function(i) {
 
@@ -46,12 +109,12 @@ saveHousehold = function(i) {
 		    processSavedHousehold(i, data);
 
 			var $messageDiv = $('#message');
-            $messageDiv.show().html('<strong>Save Success:</strong> ' + data.name + ' saved successfully.'); // show and set the message
+            $messageDiv.show().html('<strong>Save Success:</strong> ' + data.name + ' saved successfully.');
             setTimeout(function(){ $messageDiv.hide().html('');}, 3000);
 		},
 		error : function(xhr, textStatus, errorThrown) {
             var $messageDiv = $('#message');
-            $messageDiv.show().html('<strong>Save Failed:</strong> ' + errorThrown); // show and set the message
+            $messageDiv.show().html('<strong>Save Failed:</strong> ' + errorThrown);
 			var bob;
 	    }
     });
@@ -67,8 +130,12 @@ sendSaveTheDateInvite = function(i) {
     });
 };
 
-sendWeddingInvite = function(uuid) {
+sendWeddingInvite = function(i) {
+    uuid = ajaxData.results[i].uuid;
 
+    $.get( "/wedding/sendInvite/" + uuid, function(data) {
+        processSavedHousehold(i, data);
+    });
 };
 
 setCurrentHousehold = function(i) {
@@ -105,8 +172,8 @@ addHousehold = function() {
         emailVerified: false,
         inviteSent: null,
         sddSent: null,
-        addresses: [],
-        messages: []
+        persons: [],
+        comments: []
     };
     ajaxData.results.push(blankHousehold);
     renderHousehold(ajaxData.results.length-1, blankHousehold)
@@ -120,8 +187,8 @@ addPerson = function() {
         going: null,
         diet : ""
     };
-    currentHousehold.addresses.push(blankPerson);
-    renderPerson(currentHousehold.addresses.length-1, blankPerson);
+    currentHousehold.persons.push(blankPerson);
+    renderPerson(currentHousehold.persons.length-1, blankPerson);
 };
 
 updateHouseholdName = function(e, i) {
@@ -133,11 +200,11 @@ updateEmail = function(e, i) {
 };
 
 updateFirstName = function(e, i) {
-    currentHousehold.addresses[i].firstName = e.currentTarget.value;
+    currentHousehold.persons[i].firstName = e.currentTarget.value;
 };
 
 updateLastName = function(e, i) {
-    currentHousehold.addresses[i].lastName = e.currentTarget.value;
+    currentHousehold.persons[i].lastName = e.currentTarget.value;
 };
 
 renderHouseholdHeader = function() {
@@ -192,7 +259,7 @@ renderHousehold = function(i, item) {
     html += '</div>';
 
     html += '<div class="col-md-2">';
-    html += '<input type="text" value = "' + item.email + '" onkeyup="updateEmail(event, ' + i + ')">';
+    html += '<input type="text" value = "' + item.email + '" onkeyup="updateEmail(event, ' + i + ')"' + (item.emailVerified ? ' readonly' : '') + '>';
     html += '</div>';
 
     html += '<div class="col-md-1">';
@@ -210,7 +277,7 @@ renderHousehold = function(i, item) {
 
     //send save the date button
     html += '<div class="col-md-1">';
-    html += '<input type="button" value="StD" class="btn btn-danger" onClick="sendSaveTheDateInvite(' + i + ')">';
+    html += '<input type="button" value="StD" class="btn btn-danger" onClick="sendSaveTheDateInvite(' + i + ')"' + (item.sddSent != null ? ' disabled' : '') + '>';
     html += '</div>';
 
     //save the date sent date
@@ -219,7 +286,7 @@ renderHousehold = function(i, item) {
 
     //wedding invite button
     html += '<div class="col-md-1">';
-    html += '<input type="button" value="wedding" class="btn btn-danger" onClick="sendWeddingInvite(' + i + ')" disabled>';
+    html += '<input type="button" value="Invite" class="btn btn-danger" onClick="sendWeddingInvite(' + i + ')"' + (item.sddSent != null ? '' : ' disabled') + '>';
     html += '</div>';
 
     //wedding invite sent date
@@ -272,13 +339,40 @@ renderPerson = function(i, item) {
     $('#modalcontainer').append(html);
 }
 
-formatDate = function(seconds) {
+renderActivity = function(i, item) {
+    var html = '<div class="row"';
 
-    if(typeof seconds == "undefined"  || seconds == null) {
+    html +=  ' style="background: #f1f1f1; padding-top:10px; padding-bottom:10px;">';
+
+    html += '<div class="col-md-2">';
+    html += item.activityDate;
+    html += '</div>';
+
+    html += '<div class="col-md-2">';
+    html += item.severity
+    html += '</div>';
+
+    html += '<div class="col-md-2">';
+    html += item.householdName;
+    html += '</div>';
+
+    html += '<div class="col-md-6">';
+    html += item.text;
+    html += '</div>';
+
+    html += '</div>';
+    $('#activitymodalcontainer').append(html);
+}
+
+formatDate = function(date) {
+
+    if(typeof date == "undefined"  || date == null) {
         return "";
     }
 
-    var date = new Date(seconds*1000);
+    if(typeof date == "string") {
+        date = new Date(date);
+    }
 
     var day = date.getDate();
     var month = date.getMonth()+1;
@@ -287,5 +381,12 @@ formatDate = function(seconds) {
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();
 
-    return month + '-' + day + '-' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+    return leadingZero(month) + '-' + leadingZero(day) + '-' + leadingZero(year) + ' ' + leadingZero(hours) + ':' + leadingZero(minutes) + ':' + leadingZero(seconds);
+}
+
+leadingZero = function(digit) {
+    if(digit < 10) {
+        return '0' + digit;
+    }
+    return digit;
 }

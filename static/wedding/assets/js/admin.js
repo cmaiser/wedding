@@ -255,7 +255,7 @@ renderHousehold = function(i, item) {
     html += '</div>';
 
     html += '<div class="col-md-1">';
-    html += '<a href="http://nnagflar.pythonanywhere.com/wedding/?household=' + item.uuid + '" target="_blank">View</a>';
+    html += '<a href="http://www.chrisandcandice.com/wedding/?household=' + item.uuid + '" target="_blank">View</a>';
     html += '</div>';
 
     html += '<div class="col-md-2">';

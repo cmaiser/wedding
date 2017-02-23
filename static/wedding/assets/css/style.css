@@ -285,6 +285,11 @@ body {
   line-height: 32px;
 }
 
+.details {
+  font-size: 12px;
+  line-height: 24px;
+}
+
 .white {
     color: #fff;
 }
@@ -431,6 +436,7 @@ fieldset[disabled] .btn-primary.active {
 /*-----------------------------------------------------------------------------------*/
 /*   4 NAV
 /*-----------------------------------------------------------------------------------*/
+
 .navbar-nav {
     float: none;
     margin: 0 auto;
@@ -490,7 +496,7 @@ fieldset[disabled] .btn-primary.active {
 	font-weight: 700;
 	font-size: 14px;
 	color: #333;
-	padding: 25px 20px;
+	padding: 25px 5px;
 	-webkit-transition: all .5s ease-in-out;
 	-moz-transition: all .5s ease-in-out;
 	-o-transition: all .5s ease-in-out;
@@ -545,7 +551,7 @@ fieldset[disabled] .btn-primary.active {
 
 .navbar-default.navbar-shrink .nav li > a,
 .navbar-default.navbar-shrink .navbar-brand {
-    color: #333;
+    color: #9f9f9f;
 }
 
 .navbar-default .navbar-nav>.active>a:hover,
@@ -592,7 +598,6 @@ fieldset[disabled] .btn-primary.active {
 #headerwrap {
     background-color: #f3f3f3;
     overflow: hidden;
-    background-image: url('../img/bg/bgheart.jpg');
 }
 
 .opaque {
@@ -1648,4 +1653,9 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+#map {
+    height: 250px;
+    width: 100%;
 }

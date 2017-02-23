@@ -186,6 +186,10 @@ $(document).ready(function(){
         $("#modaltitle").html(currentHousehold.name);
     });
 
+    $('.nav a').on('click', function(){
+        $('.navbar-toggle').click();
+    });
+
     startTimer();
     detectUser();
 });
@@ -196,6 +200,7 @@ $(document).ready(function(){
 $(window).load(function() {
     'use strict';
 
+
     // PRELOADING SCREEN
     jQuery('a:not([target="_blank"]):not([href*=#]):not([href^=mailto]):not(.fancybox-media):not(.btn.responsive-menu):not(a[href$="jpg"]):not([href$="jpeg"]):not(a[href$="gif"]):not(a[href$="png"]):not(a.ajax-link)').on('click', function(){
       var href = jQuery(this).attr('href');
@@ -205,6 +210,7 @@ $(window).load(function() {
       }, 300);
       return false;
     });
+
 });
 
 /* CONFETTI JS */
@@ -284,4 +290,5 @@ var feed = new Instafeed({
     resolution: 'low_resolution',
     limit: 12
 });
+
 feed.run();

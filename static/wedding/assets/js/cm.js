@@ -13,17 +13,20 @@ function saveHousehold() {
 
 		success : function(data) {
 
-		    currentHousehold = data;
-		    $('#rsvpPersonContainer').empty();
+            currentHousehold = data;
 
-		    html = ' <div id="saveSuccess" class="row">';
-		    html += '<div class="col-md-12 text-center">';
-		    html += '<p class="h2 secondary-font"><i class="fa fa-check" style="color:green"></i>&nbsp\;Your RSVP has been received.</p>';
-		    html += '<p class="h2 secondary-font">You will receive an email confirmation shortly.</p>';
-		    html += '</div>';
-		    html += '</div>';
+            if(data.inviteSent != null) {
+                $('#rsvpPersonContainer').empty();
 
-            $('#rsvpPersonContainer').append(html);
+    		    html = ' <div id="saveSuccess" class="row">';
+    		    html += '<div class="col-md-12 text-center">';
+    		    html += '<p class="h2 secondary-font"><i class="fa fa-check" style="color:green"></i>&nbsp\;Your RSVP has been received.</p>';
+    		    html += '<p class="h2 secondary-font">You will receive an email confirmation shortly.</p>';
+    		    html += '</div>';
+    		    html += '</div>';
+
+                $('#rsvpPersonContainer').append(html);
+            }
 
             $('#myModal').modal('hide');
 
@@ -79,6 +82,18 @@ function detectUser() {
     }
 }
 
+function initMap() {
+    var uluru = {lat: 39.95, lng: -105.83};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+    });
+}
+
 function getHousehold(uuid) {
     $.get( "/wedding/household/" + uuid, function(data) {
         currentHousehold = data;
@@ -90,15 +105,22 @@ function getHousehold(uuid) {
             $('#welcomeHousehold').html('Welcome ' + data.name + '!');
 
             $.each(currentHousehold.persons, function (i, item) {
-                if(item.going == null) {
-                    item.going = false;
+                if(currentHousehold.inviteSent != null) {
+                    if(item.going == null) {
+                        item.going = false;
+                    }
                 }
+
             });
 
             renderRsvp(currentHousehold);
         }
 
         toggleMessageControl();
+
+        if(getUrlParameter("rsvp") == "true") {
+            $("#rsvpLink").click();
+        }
     });
 }
 
@@ -152,6 +174,12 @@ function renderRsvp(household) {
     if(household.inviteSent != null) {
         var html = "";
 
+        html += '<div class="row">';
+        html += '<div class="col-md-12">';
+        html += '<h5 class="section-subheading secondary-font text-center">Please click the buttons under guest names to change whether or not they\'re attending, then click "SEND RSVP"</h5>';
+        html += '</div>';
+        html += '</div>'
+
         $.each(household.persons, function (i, item) {
             var firstCol = (i%2 == 0);
             if(firstCol) {
@@ -196,14 +224,18 @@ function renderRsvp(household) {
     //Save the date has been sent out
     else {
 
-        html = '';
+        html = ' <div class="row">';
+		html += '<div class="col-md-12 text-center">';
+
         if(household.emailVerified) {
-            html += '<p class="h2 secondary-font"><i class="fa fa-check" style="color:green"></i>&nbsp\;Thank you for verifying your email.  Invitations will be sent out soon.</p>';
+            html += '<p class="h2 secondary-font"><i class="fa fa-check" style="color:green"></i>&nbsp\;Thank you for verifying your email.  We will send out invitations at a later date.</p>';
         }
         else {
-            html += '<p class="h2 secondary-font"><i class="fa fa-check" style="color:green"></i>&nbsp\;Invitations will be sent out soon.</p>';
+            html += '<p class="h2 secondary-font"><i class="fa fa-check" style="color:green"></i>&nbsp\;Invitations will be sent out at a later date.</p>';
         }
 
+		html += '</div>';
+		html += '</div>';
 
         $('#rsvpPersonContainer').append(html);
     }

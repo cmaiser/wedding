@@ -1,0 +1,36 @@
+<div style="font-family:Courier New; text-align: center; text-align: center;">
+    <h1>Thank you for your RSVP!</h1>
+    <h2>We have have received the following information from you:</h2>
+    <center>
+    <table cellpadding="10">
+        <tr>
+            <th align="left">Name</th>
+            <th align="left">Attending</th>
+            <th align="left">Dietary Restrictions</th>
+        </tr>
+        {% for person in persons %}
+        <tr>
+            <td align="left">{{ person.firstName }} {{ person.lastName }}</td>
+            <td align="left">
+                {% if person.going %}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </td>
+            <td align="left">{{ person.diet }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </center>
+    <h3><b><a href="http://www.chrisandcandice.com/wedding/?household={{ uuid }}&rsvp=true">Need to make a change?  Click here.</a></b></h3>
+    <img src='http://www.chrisandcandice.com/static/wedding/assets/img/ico/linebreak.PNG'></img>
+    <h3>Saturday, the 19th of August</h3>
+    <h3>Two thousand seventeen</h3>
+    <h3>At 3:30 in the afternoon</h3>
+    <img src='http://www.chrisandcandice.com/static/wedding/assets/img/ico/linebreak.PNG'></img>
+    <h3>B Lazy 2 Ranch</h3>
+    <h3>Fraser, CO</h3>
+    <br />
+
+</div>
